@@ -13,7 +13,6 @@ var express = require('express');
 var app = express();
 
 // Set up the server
-// process.env.PORT is related to deploying on heroku
 var server = app.listen(process.env.PORT || 3000, listen);
 
 // This call back just tells us that the server has started
@@ -26,7 +25,6 @@ function listen() {
 app.use(express.static('public'));
 
 // WebSocket Portion
-// WebSockets work with the HTTP server
 var io = require('socket.io')(server);
 
 setInterval(heartbeat, 33);
@@ -36,7 +34,6 @@ function heartbeat() {
 }
 
 // Register a callback function to run when we have an individual connection
-// This is run for each individual user that connects
 io.sockets.on(
 	'connection',
 	// We are given a websocket object in our function
